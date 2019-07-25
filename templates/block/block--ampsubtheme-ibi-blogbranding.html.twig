@@ -1,0 +1,37 @@
+{#
+/**
+ * @file
+ * Theme override for a branding block.
+ *
+ * Each branding element variable (logo, name, slogan) is only available if
+ * enabled in the block configuration.
+ *
+ * Available variables:
+ * - site_logo: Logo for site as defined in Appearance or theme settings.
+ * - site_name: Name for site as defined in Site information settings.
+ * - site_slogan: Slogan for site as defined in Site information settings.
+ */
+#}
+
+
+
+{% block content %}
+
+
+  <!-- Start Navbar -->
+  <header class="ampstart-headerbar fixed flex justify-start items-center top-0 left-0 right-0 pl2 pr4 ">
+    <div role="button" aria-label="open sidebar" on="tap:header-sidebar.toggle" tabindex="0" class="ampstart-navbar-trigger  pr2  ">☰
+    </div>
+    <a href="/blog" title="{{ 'Home'|t }}" rel="home">
+        {{ get_svg('i-blog-logo2') }}
+    </a>
+
+  </header>
+
+
+  <!-- End Navbar -->
+
+
+
+
+{% endblock %}

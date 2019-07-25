@@ -1,0 +1,115 @@
+{#
+/**
+ * @file
+ * Theme override for the basic structure of a single Drupal page.
+ *
+ * Variables:
+ * - logged_in: A flag indicating if user is logged in.
+ * - root_path: The root path of the current page (e.g., node, admin, user).
+ * - node_type: The content type for the current node, if the page is a node.
+ * - head_title: List of text elements that make up the head_title variable.
+ *   May contain or more of the following:
+ *   - title: The title of the page.
+ *   - name: The name of the site.
+ *   - slogan: The slogan of the site.
+ * - page_top: Initial rendered markup. This should be printed before 'page'.
+ * - page: The rendered page markup.
+ * - page_bottom: Closing rendered markup. This variable should be printed after
+ *   'page'.
+ * - db_offline: A flag indicating if the database is offline.
+ * - placeholder_token: The token for generating head, css, js and js-bottom
+ *   placeholders.
+ * - amp_skip_link: Markup for skip link.
+ *
+ * @see template_preprocess_html()
+ */
+#}
+<!doctype html>
+<html amp{{ html_attributes }}>
+  <head>
+    <head-placeholder token="{{ placeholder_token|raw }}">
+    <title>{{ head_title|safe_join(' | ') }}</title>
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <css-placeholder token="{{ placeholder_token }}">
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <js-placeholder token="{{ placeholder_token }}">
+      <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
+      <script async custom-element="amp-addthis" src="https://cdn.ampproject.org/v0/amp-addthis-0.1.js"></script>
+      <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+
+  </head>
+  <body{{ attributes.addClass('layout-container') }}>
+  <!-- Start Sidebar -->
+  <amp-sidebar id="header-sidebar" class="ampstart-sidebar px3  " layout="nodisplay">
+    <div class="flex justify-start items-center ampstart-sidebar-header">
+      <div role="button" aria-label="close sidebar" on="tap:header-sidebar.toggle" tabindex="0" class="ampstart-navbar-trigger items-start">✕</div>
+    </div>
+    <nav class="ampstart-sidebar-nav ampstart-nav">
+
+      <ul class="amp-side">
+
+
+        <li>
+          <a href="/3i-platform">Our Products</a>
+        </li>
+        <li>
+          <a href="/our-company">Our Company</a>
+          <ul>
+            <li>
+              <a href="/press-room">Press Room</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="/partners">Partner</a>
+        </li>
+        <li>
+          <a href="/learn-overview">Learn</a>
+          <ul>
+            <li>
+              <a href="/events">Events and Webinars</a>
+            </li>
+            <li>
+              <a href="/summit">Summit 2019</a>
+            </li>
+            <li>
+              <a href="/blog/">Blog</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="/get-started">Get Started</a>
+        </li>
+        <li>
+          <a href="/contact_us">Contact Us</a>
+        </li>
+      </ul>
+
+    </nav>
+
+
+  </amp-sidebar>
+  <!-- End Sidebar -->
+    {% if amp_skip_link %}
+      {{ amp_skip_link }}
+    {% endif %}
+    {{ page_top }}
+    {{ page }}
+    {{ page_bottom }}
+
+
+
+  <amp-analytics type="gtag" data-credentials="include">
+    <script type="application/json">
+      {
+        "vars" : {
+          "gtag_id": "UA-4008362-2",
+          "config" : {
+            "UA-4008362-2": { "groups": "default" }
+          }
+        }
+      }
+    </script>
+  </amp-analytics>
+  </body>
+</html>
